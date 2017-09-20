@@ -1,0 +1,12 @@
+---
+ - name: Start RMQ service
+   service:
+     name: rabbitmq-server
+     state: started
+
+ - name: Enable Service
+   service:
+     name: rabbitmq-server
+     enables: yes
+
+
