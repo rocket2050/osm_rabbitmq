@@ -1,12 +1,5 @@
 ---
- - name: Start RMQ service
+ - name: restart rabbitmq
    service:
      name: rabbitmq-server
-     state: started
-
- - name: Enable Service
-   service:
-     name: rabbitmq-server
-     enables: yes
-
-
+     state: restarted
