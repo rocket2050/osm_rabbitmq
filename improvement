@@ -1,0 +1,5 @@
+#The master branch rabbitmq role is only for debian based operating system.
+
+So thats's why i created a new branch Release-1.0.
+
+In Release-1.0 branch, rabbitmq role is for both Debian and RedHat Family.
