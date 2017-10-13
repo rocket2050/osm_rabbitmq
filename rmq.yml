@@ -1,4 +1,0 @@
-- hosts: test16
-  become: True
-  roles:
-    - { role: rabbitmq }
