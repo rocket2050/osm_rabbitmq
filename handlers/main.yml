@@ -1,0 +1,8 @@
+---
+# handlers file for rabbitmq
+- name: rabbit_mq
+  service: name=rabbitmq-server state=started enabled=yes
+
+- name: rabbitmq_start
+  service: name=rabbitmq-server state=started enabled=yes
+  

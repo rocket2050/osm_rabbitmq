@@ -1,0 +1,37 @@
+---
+- name: Install Erlang packages
+  apt:
+    deb: https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb
+    update_cache: yes
+    
+- name: To install erlang and erlang-nox
+  apt: name={{ item }} state=present
+  with_items:
+    - erlang
+    - erlang-nox
+    
+- name: To add rabbitmq apt key
+  apt_key:
+    url: https://www.rabbitmq.com/rabbitmq-release-signing-key.asc
+    state: present
+  tags:
+    - blue
+    
+- name: To install rabbitmq-server
+  apt: name=rabbitmq-server state=present update_cache=yes
+  notify:
+    - rabbit_mq
+
+- name: To create user for rabbitmq and give permissions and set tags
+  block:
+    - command: rabbitmqctl add_user "{{ rbadmin }}" "{{ rbpassword }}"
+    - command: rabbitmqctl set_user_tags "{{ rbadmin }}" administrator
+    - command: rabbitmqctl set_permissions -p / "{{ rbadmin }}" ".*" ".*" ".*"
+  tags: 
+    - red
+
+- name: To setup management console
+  command: rabbitmq-plugins enable rabbitmq_management
+
+
+  

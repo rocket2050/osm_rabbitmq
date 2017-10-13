@@ -1,0 +1,41 @@
+---
+
+- name: To upgrade all packages
+  yum: 
+    name: '*'
+    state: latest
+
+- name: To install erlang
+  yum:
+    name: http://packages.erlang-solutions.com/erlang-solutions-1.0-1.noarch.rpm
+    state: present
+    
+- name: To install epel-repo, erlang socat
+  yum: name={{ item }} state=present
+  with_items:
+    - epel-release
+    - socat
+    
+- name: To add rabbitmq-key
+  rpm_key:
+    key: https://www.rabbitmq.com/rabbitmq-release-signing-key.asc
+    state: present
+    
+- name: To install rabbitmq-server
+  yum:
+    name: https://www.rabbitmq.com/releases/rabbitmq-server/v3.6.10/rabbitmq-server-3.6.10-1.el7.noarch.rpm
+    state: present
+  
+- name: To start and enable rabbitmq-server
+  service: name=rabbitmq-server state=started enabled=yes
+    
+- name: To change ownership of dir
+  block:
+    - command: chown -R rabbitmq:rabbitmq /var/lib/rabbitmq/
+    - command: rabbitmqctl add_user "{{ rbadmin }}" "{{ rbpassword }}"
+    - command: rabbitmqctl set_user_tags "{{ rbadmin }}" administrator
+    - command: rabbitmqctl set_permissions -p / "{{ rbadmin }}" ".*" ".*" ".*"
+    - command: sudo rabbitmq-plugins enable rabbitmq_management
+  tags:
+    - yel
+    

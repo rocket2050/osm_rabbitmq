@@ -1,0 +1,12 @@
+---
+# tasks file for rabbitmq
+- name: To setup rabbitmq on RedHat
+  include: redhat.yml
+  when:
+    ansible_os_family == 'RedHat'
+
+- name: To setup rabbitmq on Ubuntu
+  include: debian.yml
+  when:
+    ansible_os_family == 'Debian'
+    

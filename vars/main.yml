@@ -1,0 +1,5 @@
+---
+# vars file for rabbitmq
+rbadmin: admin
+rbpassword: password
+

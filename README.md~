@@ -23,17 +23,9 @@ Dependencies
 ------------
 
 The dependency is erlang and scot and rabbitmq-server
-
-RabbitMQ package for RedHat: https://www.rabbitmq.com/releases/
-
-rabbitmq-server/v3.6.1/rabbitmq-server-3.6.1-1.noarch.rpm
-
-Erlang package for Debian: https://packages.erlang-solutions.com/
-
-Erlang-solutions_1.0_all.deb
-
+RabbitMQ package for RedHat: https://www.rabbitmq.com/releases/rabbitmq-server/v3.6.1/rabbitmq-server-3.6.1-1.noarch.rpm
+Erlang package for Debian: https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb
 Erlang package for RedHat: http://packages.erlang-solutions.com/erlang-solutions-1.0-1.noarch.rpm
-
 Example Playbook
 ----------------
 
